@@ -1,0 +1,15 @@
+module.exports = ['emptyweb',
+  'consoleapp',
+  'web',
+  'webbasic',
+  'webapi',
+  'nancy',
+  'classlibrary',
+  'unittest',
+  'fsharp_lib',
+  'fsharp_webapi',
+  'fsharp_console',
+  'fsharp_emptyweb',
+  'fsharp_webbasic',
+  'fsharp_test'
+];
