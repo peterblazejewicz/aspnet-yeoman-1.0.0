@@ -2,26 +2,25 @@
 const Generator = require('yeoman-generator');
 const chalk = require('chalk');
 const yosay = require('yosay');
-//
-const validProjects = require('./valid-projects')
-const supportedOptions = require('./supported-options');
-/**
- *
- */
+const common = require('./lib/common');
+
 module.exports = class extends Generator {
 
   constructor(args, opts) {
     super(args, opts);
-    supportedOptions.forEach((option) => {
-      var {
+    common.supportedOptions.forEach(option => {
+      let {
+        name,
         type,
         required,
-        desc
+        desc,
+        defaults
       } = option;
-      this.argument(option.name, {
+      this.argument(name, {
         type,
         required,
-        desc
+        desc,
+        defaults
       });
     });
     this.log(chalk.green('constructor'));
@@ -29,9 +28,9 @@ module.exports = class extends Generator {
 
   initializing() {
     this.log(chalk.green('initializing'));
-    this.log(`type: ${this.type}`);
-    this.log(`name: ${this.name}`);
-    this.log(`ui: ${this.ui}`);
+    this.log(`type: ${this.options.type}`);
+    this.log(`name: ${this.options.name}`);
+    this.log(`ui: ${this.options.ui}`);
     this.props = {};
   }
   prompting() {
@@ -58,9 +57,10 @@ module.exports = class extends Generator {
     this.log(chalk.green('confirm'));
   }
 
-  default () {
+  default() {
     this.log(chalk.green('default'));
   }
+
   writing() {
     this.log(chalk.green('writing'));
     this.fs.copy(
