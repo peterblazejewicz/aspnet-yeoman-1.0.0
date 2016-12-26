@@ -2,7 +2,7 @@
 const constants = require('./constants');
 //
 // supported project types constants
-const supportedProjects = [
+const supportedProjectTypes = [
   constants.CLASS_LIB,
   constants.CONSOLE_APP,
   constants.EMPTY_WEB,
@@ -20,10 +20,10 @@ const supportedProjects = [
 ];
 
 let isValidProjectType = type => {
-  return supportedProjects.indexOf(type) > -1;
+  return supportedProjectTypes.indexOf(type) > -1;
 };
 
-const supportedOptions = [{
+const supportedApplicationOptions = [{
   name: 'type',
   type: String,
   required: false,
@@ -41,8 +41,53 @@ const supportedOptions = [{
   desc: 'the ui library to use (bootstrap OR semantic)'
 }];
 
+const defaultOptions = [{
+  name: 'Empty Web Application',
+  value: constants.EMPTY_WEB
+}, {
+  name: 'Empty Web Application (F#)',
+  value: constants.FSHARP_EMPTY_WEB
+}, {
+  name: 'Console Application',
+  value: constants.CONSOLE_APP
+}, {
+  name: 'Console Application (F#)',
+  value: constants.FSHARP_CONSOLE_APP
+}, {
+  name: 'Web Application',
+  value: constants.WEB_APP
+}, {
+  name: 'Web Application Basic [without Membership and Authorization]',
+  value: constants.WEB_BASIC_APP
+}, {
+  name: 'Web Application Basic [without Membership and Authorization] (F#)',
+  value: constants.FSHARP_WEB_BASIC_APP
+}, {
+  name: 'Web API Application',
+  value: constants.WEB_API
+}, {
+  name: 'Web API Application (F#)',
+  value: constants.FSHARP_WEB_API
+}, {
+  name: 'Nancy ASP.NET Application',
+  value: constants.NANCY_WEB
+}, {
+  name: 'Class Library',
+  value: constants.CLASS_LIB
+}, {
+  name: 'Class Library (F#)',
+  value: constants.FSHARP_LIB
+}, {
+  name: 'Unit test project (xUnit.net)',
+  value: constants.UNIT_TEST
+}, {
+  name: 'Unit test project (xUnit.net) (F#)',
+  value: constants.FSHARP_TEST
+}];
+
 module.exports = {
+  defaultOptions,
   isValidProjectType,
-  supportedProjects,
-  supportedOptions
+  supportedProjectTypes,
+  supportedApplicationOptions
 };

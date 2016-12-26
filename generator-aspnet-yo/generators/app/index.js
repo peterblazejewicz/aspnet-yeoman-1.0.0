@@ -8,7 +8,7 @@ module.exports = class extends Generator {
 
   constructor(args, opts) {
     super(args, opts);
-    common.supportedOptions.forEach(option => {
+    common.supportedApplicationOptions.forEach(option => {
       let {
         name,
         type,
