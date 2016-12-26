@@ -9,7 +9,7 @@ module.exports = class extends Generator {
   constructor(args, opts) {
     super(args, opts);
     common.supportedApplicationOptions.forEach(option => {
-      let {
+      const {
         name,
         type,
         required,
@@ -38,12 +38,13 @@ module.exports = class extends Generator {
   }
 
   prompting() {
+    this.log(`appname: ${this.appname}`);
     // Have Yeoman greet the user.
     this.log(yosay(
       'Welcome to the awe-inspiring ' + chalk.red('generator-aspnet-yo') + ' generator!'
     ));
 
-    var prompts = [{
+    const prompts = [{
       type: 'confirm',
       name: 'someAnswer',
       message: 'Would you like to enable this option?',
