@@ -1,27 +1,29 @@
 'use strict';
-
-
-let supportedProjects = ['emptyweb',
-  'consoleapp',
-  'web',
-  'webbasic',
-  'webapi',
-  'nancy',
-  'classlibrary',
-  'unittest',
-  'fsharp_lib',
-  'fsharp_webapi',
-  'fsharp_console',
-  'fsharp_emptyweb',
-  'fsharp_webbasic',
-  'fsharp_test'
+const constants = require('./constants');
+//
+// supported project types constants
+const supportedProjects = [
+  constants.CLASS_LIB,
+  constants.CONSOLE_APP,
+  constants.EMPTY_WEB,
+  constants.FSHARP_CONSOLE_APP,
+  constants.FSHARP_EMPTY_WEB,
+  constants.FSHARP_LIB,
+  constants.FSHARP_TEST,
+  constants.FSHARP_WEB_API,
+  constants.FSHARP_WEB_BASIC_APP,
+  constants.NANCY_WEB,
+  constants.UNIT_TEST,
+  constants.WEB_API,
+  constants.WEB_APP,
+  constants.WEB_BASIC_APP
 ];
 
-let isValidProjetType = type => {
-  return supportedProjects.indexOf(type) !== -1;
+let isValidProjectType = type => {
+  return supportedProjects.indexOf(type) > -1;
 };
 
-let supportedOptions = [{
+const supportedOptions = [{
   name: 'type',
   type: String,
   required: false,
@@ -40,7 +42,7 @@ let supportedOptions = [{
 }];
 
 module.exports = {
-  isValidProjetType,
+  isValidProjectType,
   supportedProjects,
   supportedOptions
 };

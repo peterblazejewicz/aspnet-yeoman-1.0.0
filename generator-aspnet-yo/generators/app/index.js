@@ -28,11 +28,15 @@ module.exports = class extends Generator {
 
   initializing() {
     this.log(chalk.green('initializing'));
-    this.log(`type: ${this.options.type}`);
-    this.log(`name: ${this.options.name}`);
-    this.log(`ui: ${this.options.ui}`);
+    if (this.options.type && common.isValidProjetType(this.options.type) === true) {
+      this.log(`Creating ${chalk.cyan(this.options.type)} project`);
+    } else if (this.options.type) {
+      this.log(`${this.options.type} is not a valid project type`, chalk.cyan(this.options.type));
+      this.options.type = this.options.name = undefined;
+    }
     this.props = {};
   }
+
   prompting() {
     // Have Yeoman greet the user.
     this.log(yosay(
@@ -67,11 +71,14 @@ module.exports = class extends Generator {
       this.templatePath('dummyfile.txt'),
       this.destinationPath('dummyfile.txt')
     );
+    // always save a config file
+    this.config.save();
   }
 
   conflicts() {
     this.log(chalk.green('conflicts'));
   }
+
   install() {
     this.log(chalk.green('install'));
     this.installDependencies();
@@ -80,4 +87,5 @@ module.exports = class extends Generator {
   end() {
     this.log(chalk.green('end'));
   }
+
 };
